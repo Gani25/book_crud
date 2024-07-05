@@ -10,4 +10,6 @@ public interface BookService {
     boolean saveBook(Book book);
 
     List<Book> getAllBooks();
+
+    Book getBookById(int bookId);
 }

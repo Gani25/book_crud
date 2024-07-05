@@ -76,8 +76,16 @@
                         <td th:text="${book.publication}">Harper</td>
                         <td th:text="${book.email}">harper@gmail.com</td>
                         <td th:text="${book.edition}">First Editio</td>
-                        <td><button>Delete</button>
-                            <button>Update</button>
+                        <td>
+                            <!-- Path variable -->
+                            <a class="btn btn-light" th:href="@{/book/update/{bookId}(bookId=${book.bookId})}"><i
+                                    class="fa-solid fa-pencil"></i> Update</a>
+                            <a class="btn btn-danger" th:href="@{/book/delete/{bookId}(bookId=${book.bookId})}"><i
+                                    class="fa-solid fa-trash"></i> Delete</a>
+                            <!-- Request Param -->
+                            <!-- <a class="btn btn-light" th:href="@{/book/update(bookId=${book.bookId})}"><i
+                                    class="fa-solid fa-pencil"></i>
+                                Update</a> -->
                         </td>
                     </tr>
                 </tbody>
@@ -88,6 +96,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/21ffbf0563.js" crossorigin="anonymous"></script>
 </body>
 
 </html>

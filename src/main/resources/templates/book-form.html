@@ -19,6 +19,8 @@
         <h1 class="text-center my-5">Welcome to library</h1>
         <div class="w-75 mx-auto">
             <form th:action="@{/book/process-form}" method="post" th:object="${book}">
+
+                <!-- <input type="hidden" th:field="*{bookId}"> -->
                 <div class="mb-3">
                     <label for="bn" class="form-label">Book Name</label>
                     <input type="text" th:field="*{bookName}" class="form-control" id="bn">

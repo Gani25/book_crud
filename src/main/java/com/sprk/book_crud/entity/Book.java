@@ -7,7 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * DOCS Comment
@@ -20,6 +23,9 @@ import lombok.Data;
 
 @Data
 @Entity
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
 
     @Id
@@ -46,4 +52,14 @@ public class Book {
     @NotBlank(message = "Please add email!!")
     @Email(message = "Please enter valid email!!")
     private String email;
+
+    public Book(Book book) {
+        this.bookId = book.bookId;
+        this.authorName = book.authorName;
+        this.amount = book.amount;
+        this.bookName = book.bookName;
+        this.edition = book.edition;
+        this.email = book.email;
+        this.publication = book.publication;
+    }
 }

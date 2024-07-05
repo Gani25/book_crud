@@ -1,6 +1,7 @@
 package com.sprk.book_crud.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,17 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
+    }
+
+    @Override
+    public Book getBookById(int bookId) {
+
+        Optional<Book> book = bookRepository.findById(bookId);
+
+        if (book.isPresent()) {
+            return book.get();
+        } else {
+            return null;
+        }
     }
 }
