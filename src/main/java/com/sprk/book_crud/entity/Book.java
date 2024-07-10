@@ -53,6 +53,7 @@ public class Book {
     @Email(message = "Please enter valid email!!")
     private String email;
 
+    // Copy Constructor
     public Book(Book book) {
         this.bookId = book.bookId;
         this.authorName = book.authorName;

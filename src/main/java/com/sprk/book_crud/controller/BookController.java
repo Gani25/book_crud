@@ -45,9 +45,9 @@ public class BookController {
 
             return "book-form";
         } else {
-            Book userBook = new Book(book);
-            int bookId = (int) session.getAttribute("bookId");
-            System.out.println("Book Id = " + bookId);
+            Book userBook = new Book(book); // copy constructor
+            int bookId = (int) session.getAttribute("bookId"); // except 0 when update
+            // System.out.println("Book Id = " + bookId);
             if (bookId != 0) {
                 book.setBookId(bookId);
                 userBook.setBookId(bookId);
@@ -74,7 +74,7 @@ public class BookController {
     }
 
     @GetMapping("/show-dashboard")
-    public String getMethodName(Model model) {
+    public String showDashboard(Model model) {
 
         List<Book> books = bookService.getAllBooks();
 
@@ -95,6 +95,23 @@ public class BookController {
             model.addAttribute("book", book);
             session.setAttribute("bookId", bookId);
             return "book-form";
+        }
+    }
+
+    @GetMapping("/delete/{bookId}")
+    public String deleteBook(@PathVariable int bookId, RedirectAttributes redirectAttributes) {
+        Book book = bookService.getBookById(bookId);
+
+        if (book == null) {
+            redirectAttributes.addFlashAttribute("msg", "Book with id = " + bookId + " doesnot exists");
+            return "redirect:/book/show-dashboard";
+        } else {
+
+            bookService.deleteBook(book);
+
+            redirectAttributes.addFlashAttribute("msg", "Book Deleted successfully");
+            return "redirect:/book/show-dashboard";
+
         }
     }
 
